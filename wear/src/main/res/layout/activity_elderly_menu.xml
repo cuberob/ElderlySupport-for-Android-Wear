@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.wearable.view.BoxInsetLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SMS"
+        android:id="@+id/action_textView"
+        android:layout_gravity="center"
+        android:textAppearance="?android:textAppearanceLarge"
+        app:layout_box="top|left|right"/>
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/previous_button"
+        android:background="@drawable/previous"
+        android:layout_gravity="center_vertical|left"
+        app:layout_box="left"/>
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/next_button"
+        android:background="@drawable/next"
+        android:layout_gravity="center_vertical|right"
+        app:layout_box="right"/>
+
+</android.support.wearable.view.BoxInsetLayout>

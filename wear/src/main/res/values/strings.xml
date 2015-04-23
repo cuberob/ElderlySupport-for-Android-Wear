@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ElderlySupport</string>
+    <string name="my_digital_name">Activity Watch</string>
+    <string name="title_activity_elderly_menu">ElderlyMenuActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+</resources>
