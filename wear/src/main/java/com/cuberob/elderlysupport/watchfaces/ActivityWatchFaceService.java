@@ -117,7 +117,7 @@ public class ActivityWatchFaceService extends CanvasWatchFaceService {
         boolean mRegisteredTimeZoneReceiver = false;
 
         Paint mBackgroundPaint;
-        Paint mTextPaint, mSmallTextPaint;
+        Paint mTextPaint, mSmallTextPaint, mOutLinePaint;
         Paint mActivityPaint;
 
         boolean mAmbient;
@@ -158,13 +158,17 @@ public class ActivityWatchFaceService extends CanvasWatchFaceService {
             mBackgroundPaint = new Paint();
             mBackgroundPaint.setColor(resources.getColor(R.color.digital_background));
 
-            mTextPaint = new Paint();
             mTextPaint = createTextPaint(resources.getColor(R.color.digital_text));
             mTextPaint.setTextAlign(Paint.Align.CENTER);
 
-            mSmallTextPaint = new Paint();
             mSmallTextPaint = createTextPaint(resources.getColor(R.color.digital_text));
             mSmallTextPaint.setTextAlign(Paint.Align.CENTER);
+            mSmallTextPaint.setTextSize(mSmallTextPaint.getTextSize()+2);
+
+            mOutLinePaint = createTextPaint(resources.getColor(R.color.black));
+            mOutLinePaint.setStyle(Paint.Style.STROKE);
+            mOutLinePaint.setTextAlign(Paint.Align.CENTER);
+            mOutLinePaint.setStrokeWidth(mOutLinePaint.getStrokeWidth()+1);
 
             mActivityPaint = new Paint();
             mActivityPaint.setShader(new LinearGradient(0, 0, 0, 290, Color.GREEN, Color.YELLOW, Shader.TileMode.MIRROR));
@@ -277,6 +281,7 @@ public class ActivityWatchFaceService extends CanvasWatchFaceService {
                     ? R.dimen.digital_text_size_round : R.dimen.digital_text_size);
 
             mTextPaint.setTextSize(textSize);
+            mOutLinePaint.setTextSize(textSize);
         }
 
         @Override
@@ -298,6 +303,8 @@ public class ActivityWatchFaceService extends CanvasWatchFaceService {
                 mAmbient = inAmbientMode;
                 if (mLowBitAmbient) {
                     mTextPaint.setAntiAlias(!inAmbientMode);
+                    mSmallTextPaint.setAntiAlias(!inAmbientMode);
+                    mOutLinePaint.setAntiAlias(!inAmbientMode);
                 }
                 invalidate();
             }
@@ -327,7 +334,11 @@ public class ActivityWatchFaceService extends CanvasWatchFaceService {
                     : String.format("%d:%02d:%02d", mTime.hour, mTime.minute, mTime.second);
 
             canvas.drawText(text, (width / 2), mYOffset, mTextPaint);
-            canvas.drawText("Steps: " + steps, (width / 2), mYOffset + 40, mSmallTextPaint);
+            if(!isInAmbientMode()) {
+                canvas.drawText(text, (width / 2), mYOffset, mOutLinePaint);
+                String stepsString = String.format("Steps: %d", ((int)steps));
+                canvas.drawText(stepsString, (width / 2), mYOffset + 40, mSmallTextPaint);
+            }
 
         }
 

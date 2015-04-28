@@ -8,7 +8,7 @@
     <uses-permission android:name="com.google.android.permission.PROVIDE_BACKGROUND" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -55,6 +55,12 @@
             android:enabled="true"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".activities.DisplayLatestTextActivity"
+            android:label="@string/title_activity_display_latest_text"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

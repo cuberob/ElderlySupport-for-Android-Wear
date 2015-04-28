@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.wearable.view.BoxInsetLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <com.cuberob.elderlysupport.views.ScrollingTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Bericht van: Rob\nVandaag - 12:17\n\nHallo hoe gaat het vandaag?\nDit is een langer bericht.\nEven kijken hoe dit gaat?\nBegint alles nu automatisch te scrollen?\nOke!"
+        android:id="@+id/sms_textview"
+        android:layout_gravity="center"
+        android:textAppearance="?android:textAppearanceLarge"
+        app:layout_box="left|right|top"
+        android:padding="6dp"/>
+
+</android.support.wearable.view.BoxInsetLayout>
